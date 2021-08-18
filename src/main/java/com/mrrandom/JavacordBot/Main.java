@@ -35,22 +35,7 @@ public class Main {
 		}
 	});
 	*/
-        //This listener does the busting
-		api.addMessageCreateListener(new MessageCreateListener() {
-			@Override
-			public void onMessageCreate(MessageCreateEvent event) {
-				if(event.isPrivateMessage()) {
-					System.out.println("Recieved DM");
-					try {
-						User usr = event.getMessage().getAuthor().asUser().get();
-						banUser(api, usr);
-					} 
-					catch(Exception e) {
-						System.out.println("oOf. I tried, but i couldnt ban. Please check that i have the ban or admin perm.");
-					} 
-				}
-			}
-		});
+
 		
 		final double minutes = 2.0;
 		final double threshold = 10;
@@ -74,9 +59,6 @@ public class Main {
 		});
 		
         System.out.println("Logged in! Part of "+api.getServers().size()+" servers");
-		api.getServerTextChannelById(getChannel()).ifPresent(channel -> {
-			  channel.sendMessage("I'm logged in!");
-		});
         
     }
 
